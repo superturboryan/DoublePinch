@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "DoublePinch",
+    platforms: [.iOS(.v13), .watchOS(.v9)],
     products: [
         .library(name: "DoublePinch", targets: ["DoublePinch"]),
     ],
