@@ -2,9 +2,9 @@ import SwiftUI
 
 extension Button {
     
-    @MainActor
-    @ViewBuilder
-    public func doublePinch() -> some View {
-        
+    nonisolated public func doublePinch(action: @escaping @MainActor () -> Void) -> some View {
+        accessibilityQuickAction(style: .outline) {
+            SwiftUI.Button("Magic Pinch", action: action)
+        }
     }
 }
