@@ -9,7 +9,11 @@ let package = Package(
     products: [
         .library(name: "DoublePinch", targets: ["DoublePinch"]),
     ],
+    dependencies: [
+        .package(path: "TappableButton"),
+    ],
     targets: [
-        .target(name: "DoublePinch"),
+        .target(name: "DoublePinch", dependencies: ["TappableButton"]),
+        .testTarget(name: "DoublePinchTests", dependencies: ["DoublePinch"]),
     ]
 )
