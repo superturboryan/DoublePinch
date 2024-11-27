@@ -68,23 +68,12 @@ private struct DoublePinchViewModifier: ViewModifier {
     }
     
     public func body(content: Content) -> some View {
-        content.accessibilityQuickAction(
-            style: .outline,
-            isActive: .constant(mode == .accessibilityQuickAction)
-        ) {
-            Button("Primary action", action: action)
-        }
-        .modifier(HandGestureShortcutModifier(mode: mode))
-    }
-}
-
-private struct HandGestureShortcutModifier: ViewModifier {
-    
-    let mode: DoublePinchMode
-    
-    public func body(content: Content) -> some View {
-        if #available(watchOS 11.0, *) {
-            content.handGestureShortcut(.primaryAction, isEnabled: mode == .doubleTapGesture)
+        if #available(watchOS 11.0, *), mode == .doubleTapGesture {
+            content.handGestureShortcut(.primaryAction)
+        } else if mode == .accessibilityQuickAction {
+            content.accessibilityQuickAction(style: .outline) {
+                Button("Primary action", action: action)
+            }
         } else {
             content
         }
