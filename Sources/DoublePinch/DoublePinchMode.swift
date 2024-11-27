@@ -52,12 +52,14 @@ private extension DoublePinchMode {
     /// is based on the device's model identifier.
     ///
     /// See a complete list of device models [here](https://gist.github.com/adamawolf/3048717#file-apple_mobile_device_types-txt)
-    static var isDoubleTapGestureSupported: Bool { // AKA isSeries9OrNewer
-        // https://gist.github.com/adamawolf/3048717#file-apple_mobile_device_types-txt
-        guard let firstModelDigit = Int(String(describing: model.first)) else {
+    static var isDoubleTapGestureSupported: Bool {
+        guard
+            let firstModelChar = model.first(where: \.isNumber),
+            let firstModelInt = Int(String(firstModelChar))
+        else {
             return false
         }
-        return firstModelDigit >= 7
+        return firstModelInt >= 7
     }
     
     /// Retrieves the model identifier of the device.
