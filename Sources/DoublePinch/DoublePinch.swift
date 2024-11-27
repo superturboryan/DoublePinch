@@ -3,7 +3,7 @@
 //  DoublePinch
 //
 
-import os
+import OSLog
 import SwiftUI
 import TappableButton
 
