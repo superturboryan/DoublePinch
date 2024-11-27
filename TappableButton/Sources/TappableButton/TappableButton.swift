@@ -22,7 +22,7 @@ extension Button {
         }
         
         guard let closure = Mirror(reflecting: action).descendant("closure") else {
-            return nil
+            return action as? T
         }
         
         return closure as? T
