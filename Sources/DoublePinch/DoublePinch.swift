@@ -41,7 +41,7 @@ extension Button {
     @MainActor
     public func doublePinch(_ mode: DoublePinchMode = DoublePinchMode.automatic) -> some View {
         let modifier = DoublePinchViewModifier(mode: mode) {
-            guard let _action else {
+            if !_performAction() {
                 log.fault(
                     """
                     No action has been found for the double pinch modifier. Please file an issue on GitHub.
@@ -50,9 +50,7 @@ extension Button {
                     Workaround: Use View/accessibilityQuickAction directly.
                     """
                 )
-                return
             }
-            MainActor.assumeIsolated(_action)
         }
         
         return self.modifier(modifier)
