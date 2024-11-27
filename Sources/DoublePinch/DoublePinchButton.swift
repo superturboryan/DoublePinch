@@ -14,7 +14,7 @@ struct DoublePinchButton<Label: View>: View {
     private let label: () -> Label
     
     init(
-        mode: DoublePinchMode = .all,
+        mode: DoublePinchMode = DoublePinchMode.automatic,
         action: @escaping @MainActor () -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
