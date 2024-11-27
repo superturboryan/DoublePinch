@@ -5,6 +5,7 @@
 
 import SwiftUI
 import WatchKit
+
 /// A wrapper around the standard ``SwiftUI/Button`` that responds to a double-pinch gesture, supporting different gesture modes.
 ///
 /// Use `DoublePinchButton` to create a button that can trigger actions in response to a double-pinch gesture,
