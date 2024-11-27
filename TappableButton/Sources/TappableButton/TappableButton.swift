@@ -2,7 +2,21 @@ import SwiftUI
 
 extension Button {
     
-    public var _action: (@MainActor () -> Void)? {
+    public func _performAction() -> Bool {
+        if #available(watchOS 11.0, *), let action = getAction((@MainActor () -> Void).self) {
+            MainActor.assumeIsolated(action)
+            return true
+        }
+        
+        if let action = getAction((() -> Void).self) {
+            action()
+            return true
+        }
+        
+        return false
+    }
+    
+    private func getAction<T>(_ type: T.Type) -> T? {
         guard let action = Mirror(reflecting: self).descendant("action") else {
             return nil
         }
@@ -11,6 +25,6 @@ extension Button {
             return nil
         }
         
-        return closure as? (@MainActor () -> Void)
+        return closure as? T
     }
 }
