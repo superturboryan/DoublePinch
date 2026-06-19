@@ -1,0 +1,32 @@
+name: "\U0001F9E9 Build Package"
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Configure watchOS simulator build settings
+        run: |
+          echo "WATCH_SIMULATOR_SDK=$(xcrun --sdk watchsimulator --show-sdk-path)" >> "$GITHUB_ENV"
+          echo "WATCH_SIMULATOR_TRIPLE=$(uname -m)-apple-watchos9.0-simulator" >> "$GITHUB_ENV"
+
+      - name: Build TappableButton target
+        run: |
+          swift build \
+            --target TappableButton \
+            --triple "$WATCH_SIMULATOR_TRIPLE" \
+            --sdk "$WATCH_SIMULATOR_SDK"
+
+      - name: Build DoublePinch target
+        run: |
+          swift build \
+            --target DoublePinch \
+            --triple "$WATCH_SIMULATOR_TRIPLE" \
+            --sdk "$WATCH_SIMULATOR_SDK"
