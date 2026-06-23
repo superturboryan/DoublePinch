@@ -1,5 +1,7 @@
 # DoublePinch
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsuperturboryan%2FDoublePinch%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/superturboryan/DoublePinch) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsuperturboryan%2FDoublePinch%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/superturboryan/DoublePinch)
+
 `DoublePinch` adds double-pinch support to SwiftUI `Button`s on watchOS.
 
 On supported Apple Watch models running watchOS 11 or newer, it uses the system hand gesture shortcut for the primary action. On earlier supported devices, it falls back to an accessibility quick action so the same button can still participate in a double-pinch driven flow.
